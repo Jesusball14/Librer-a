@@ -38,5 +38,8 @@ RUN mkdir -p /var/www/html/storage/app/public/defaults && \
     php artisan config:cache && \
     php artisan view:cache
 
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+CMD curl -f http://localhost:8080 || exit 1
+
 EXPOSE 8080
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
