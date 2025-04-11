@@ -29,7 +29,6 @@ COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copiar la aplicación construida
 COPY --from=builder /app /var/www/html
-COPY .env.production .env
 
 # Configurar permisos y optimización
 RUN mkdir -p /var/www/html/storage/app/public/defaults && \
